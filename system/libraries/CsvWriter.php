@@ -38,6 +38,13 @@ class CsvWriter
 
 
 	/**
+	 * An array with the header fields
+	 * @var array
+	 */
+	protected $arrHeaderFields = array();
+
+
+	/**
 	 * Convert the file to and excel compat file
 	 * @var bool
 	 */
@@ -88,6 +95,10 @@ class CsvWriter
 				$this->arrContent = $varValue;
 				break;
 
+			case 'headerFields':
+				$this->arrHeaderFields = $varValue;
+				break;
+
 			case 'excel':
 				$this->blnExcel = $varValue;
 				break;
@@ -127,6 +138,10 @@ class CsvWriter
 		{
 			case 'content':
 				return $this->arrContent;
+				break;
+
+			case 'headerFields':
+				return $this->arrHeaderFields;
 				break;
 
 			case 'excel':
@@ -216,8 +231,24 @@ class CsvWriter
 	private function prepareContent()
 	{
 		$strCsv = '';
+		$arrData = array();
 
-		foreach((array) $this->arrContent as $arrRow)
+		// add the header fields if there are some
+		if (count($this->arrHeaderFields)>0)
+		{
+			$arrData = array($this->arrHeaderFields);
+		}
+
+		// add all other elements
+		foreach ($this->arrContent as $k=>$v)
+		{
+			//TODO: maybe find a better solution
+			$arrData[] = $v;
+		}
+		
+
+		// build the csv string
+		foreach((array) $arrData as $arrRow)
 		{
 			array_walk($arrRow, array($this, 'escapeRow'));
 			$strCsv .= $this->strDelimiter . implode($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow) . $this->strDelimiter .  $this->strSeperator . $this->strLineEnd;
