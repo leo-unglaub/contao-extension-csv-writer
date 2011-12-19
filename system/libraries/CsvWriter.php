@@ -100,7 +100,13 @@ class CsvWriter
 				break;
 
 			case 'excel':
-				$this->blnExcel = $varValue;
+				$this->blnExcel = (bool) $varValue;
+
+				// excel always need ; as seperator and " as delimiter. So we set it for the developer
+				if ($this->blnExcel)
+				{
+					$this->strSeperator = ';';
+				}
 				break;
 
 			case 'delimiter':
