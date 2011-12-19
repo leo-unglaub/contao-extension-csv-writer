@@ -28,6 +28,12 @@
  * @filesource
  */
 
+
+/**
+ * Class CsvWriter
+ * Contain methods with help you to generate valid csv files
+ * @see http://tools.ietf.org/html/rfc4180
+ */
 class CsvWriter
 {
 	/**
