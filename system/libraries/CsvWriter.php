@@ -48,7 +48,7 @@ class CsvWriter
 	 * Convert the file to and excel compat file
 	 * @var bool
 	 */
-	protected $blnExcel = true;
+	protected $blnExcel = false;
 
 
 	/**
@@ -62,7 +62,7 @@ class CsvWriter
 	 * The field seperator
 	 * @var string
 	 */
-	protected $strSeperator = ';';
+	protected $strSeperator = ',';
 
 
 	/**
