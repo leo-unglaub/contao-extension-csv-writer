@@ -240,7 +240,7 @@ class CsvWriter
 	 * @param void
 	 * @return string
 	 */
-	private function prepareContent()
+	public function prepareContent()
 	{
 		$strCsv = '';
 		$arrData = array();
@@ -282,7 +282,7 @@ class CsvWriter
 	 * @param mixed &$varValue
 	 * @return void
 	 */
-	private function escapeRow(&$varValue)
+	public function escapeRow(&$varValue)
 	{
 		$varValue = str_replace('"', '""', $varValue);
 	}
