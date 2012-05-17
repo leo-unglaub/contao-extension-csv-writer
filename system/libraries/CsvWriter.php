@@ -263,7 +263,7 @@ class CsvWriter
 		foreach((array) $arrData as $arrRow)
 		{
 			array_walk($arrRow, array($this, 'escapeRow'));
-			$strCsv .= $this->strDelimiter . implode($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow) . $this->strDelimiter .  $this->strSeperator . $this->strLineEnd;
+			$strCsv .= $this->strDelimiter . implode($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow) . $this->strDelimiter . $this->strLineEnd;
 		}
 
 		// add the excel support if requested
