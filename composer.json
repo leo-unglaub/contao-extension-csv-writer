@@ -14,7 +14,7 @@
         "php": ">=5.2"
     },
     "autoload": {
-        "classmap": ["src/"]
+        "classmap": ["system/libraries/CsvWriter.php"]
     },
     "extra": {
         "contao": {
