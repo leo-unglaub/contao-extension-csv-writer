@@ -1,0 +1,26 @@
+{
+    "name": "leounglaub/contao-csvwriter",
+    "type": "contao-module",
+    "description": "a csv writing library for contao",
+    "keywords": ["contao", "csv", "csv writer"],
+    "license": "LGPLv3",
+    "authors": [
+        {
+            "name": "Leo Unglaub",
+            "email": "leo@leo-unglaub.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.2"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "extra": {
+        "contao": {
+            "symlinks": {
+                "system/libraries/CsvWriter.php": "system/libraries/CsvWriter.php"
+            }
+        }
+    }
+}
