@@ -10,12 +10,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
@@ -88,7 +88,7 @@ class CsvWriter
 
 	/**
 	 * Set an object parameter
-	 * 
+	 *
 	 * @param string $strKey
 	 * @param mixed $varValue
 	 * @return void
@@ -140,7 +140,7 @@ class CsvWriter
 
 	/**
 	 * Return an object property
-	 * 
+	 *
 	 * @param string $strKey
 	 * @return mixed
 	 */
@@ -185,7 +185,7 @@ class CsvWriter
 
 	/**
 	 * Append an array to the content array
-	 * 
+	 *
 	 * @param array $arrArray
 	 * @return void
 	 */
@@ -197,14 +197,14 @@ class CsvWriter
 
 	/**
 	 * Generate the csv file and send it to the browser
-	 * 
+	 *
 	 * @param void
 	 * @return void
 	 */
 	public function saveToBrowser()
 	{
 		$strContent = $this->prepareContent();
-		
+
 		header('Content-Type: text/csv');
 		header('Content-Transfer-Encoding: binary');
 		header('Content-Disposition: attachment; filename="' . $this->strFileName . '.csv"');
@@ -220,7 +220,7 @@ class CsvWriter
 
 	/**
 	 * Generate the csv file and save the content in a file
-	 * 
+	 *
 	 * @param string $strPath
 	 * @return void
 	 */
@@ -236,7 +236,7 @@ class CsvWriter
 
 	/**
 	 * Prepare the given array and build the content stream
-	 * 
+	 *
 	 * @param void
 	 * @return string
 	 */
@@ -257,7 +257,7 @@ class CsvWriter
 			//TODO: maybe find a better solution
 			$arrData[] = $v;
 		}
-		
+
 
 		// build the csv string
 		foreach((array) $arrData as $arrRow)
@@ -278,7 +278,7 @@ class CsvWriter
 
 	/**
 	 * Escape a row
-	 * 
+	 *
 	 * @param mixed &$varValue
 	 * @return void
 	 */
