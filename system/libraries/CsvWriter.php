@@ -112,6 +112,7 @@ class CsvWriter
 				if ($this->blnExcel)
 				{
 					$this->strSeperator = ';';
+					$this->strDelimiter = '"';
 				}
 				break;
 
