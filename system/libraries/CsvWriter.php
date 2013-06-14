@@ -187,11 +187,12 @@ class CsvWriter
 	/**
 	 * Return true if no lines are in the content
 	 *
-	 * @return bool
+	 * @param	void
+	 * @return	bool	Return true if there are no lines.
 	 */
 	public function isEmpty()
 	{
-    	return empty($this->arrContent);
+		return empty($this->arrContent);
 	}
 
 
@@ -299,5 +300,3 @@ class CsvWriter
 		$varValue = str_replace('"', '""', $varValue);
 	}
 }
-
-?>
