@@ -185,6 +185,17 @@ class CsvWriter
 
 
 	/**
+	 * Return true if no lines are in the content
+	 *
+	 * @return bool
+	 */
+	public function isEmpty()
+	{
+    	return empty($this->arrContent);
+	}
+
+
+	/**
 	 * Append an array to the content array
 	 *
 	 * @param array $arrArray
