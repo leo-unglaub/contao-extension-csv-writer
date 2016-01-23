@@ -21,14 +21,14 @@ class CsvWriter
 	 * An array with contains the fields
 	 * @var array
 	 */
-	protected $arrContent = array();
+	protected $arrContent = array ();
 
 
 	/**
 	 * An array with the header fields
 	 * @var array
 	 */
-	protected $arrHeaderFields = array();
+	protected $arrHeaderFields = array ();
 
 
 	/**
@@ -74,7 +74,7 @@ class CsvWriter
 	 * @param mixed $varValue
 	 * @return void
 	 */
-	public function __set($strKey, $varValue)
+	public function __set ($strKey, $varValue)
 	{
 		switch ($strKey)
 		{
@@ -89,7 +89,8 @@ class CsvWriter
 			case 'excel':
 				$this->blnExcel = (bool) $varValue;
 
-				// excel always need ; as seperator and " as delimiter. So we set it for the developer
+				// excel always need ; as seperator and " as delimiter. So
+				// we set it for the developer
 				if ($this->blnExcel)
 				{
 					$this->strSeperator = ';';
@@ -114,7 +115,7 @@ class CsvWriter
 				break;
 
 			default:
-				throw new Exception(sprintf('Invalid argument "%s"', $strKey));
+				throw new Exception (sprintf ('Invalid argument "%s"', $strKey));
 				break;
 		}
 	}
@@ -171,9 +172,9 @@ class CsvWriter
 	 * @param	void
 	 * @return	bool	Return true if there are no lines.
 	 */
-	public function isEmpty()
+	public function isEmpty ()
 	{
-		return empty($this->arrContent);
+		return empty ($this->arrContent);
 	}
 
 
@@ -183,7 +184,7 @@ class CsvWriter
 	 * @param array $arrArray
 	 * @return void
 	 */
-	public function appendContent($arrArray)
+	public function appendContent ($arrArray)
 	{
 		$this->arrContent[] = $arrArray;
 	}
@@ -195,17 +196,17 @@ class CsvWriter
 	 * @param void
 	 * @return void
 	 */
-	public function saveToBrowser()
+	public function saveToBrowser ()
 	{
-		$strContent = $this->prepareContent();
+		$strContent = $this->prepareContent ();
 
-		header('Content-Type: text/csv');
-		header('Content-Transfer-Encoding: binary');
-		header('Content-Disposition: attachment; filename="' . $this->strFileName . '.csv"');
-		header('Content-Length: ' . strlen($strContent));
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Pragma: public');
-		header('Expires: 0');
+		header ('Content-Type: text/csv');
+		header ('Content-Transfer-Encoding: binary');
+		header ('Content-Disposition: attachment; filename="' . $this->strFileName . '.csv"');
+		header ('Content-Length: ' . strlen($strContent));
+		header ('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header ('Pragma: public');
+		header ('Expires: 0');
 
 		echo $strContent;
 		exit;
@@ -218,13 +219,13 @@ class CsvWriter
 	 * @param string $strPath
 	 * @return void
 	 */
-	public function saveToFile($strPath)
+	public function saveToFile ($strPath)
 	{
-		$objFile = new File($strPath);
-		$objFile->write($this->prepareContent());
-		$objFile->close();
+		$objFile = new File ($strPath);
+		$objFile->write ($this->prepareContent());
+		$objFile->close ();
 
-		unset($objFile);
+		unset ($objFile);
 	}
 
 
@@ -234,15 +235,15 @@ class CsvWriter
 	 * @param void
 	 * @return string
 	 */
-	public function prepareContent()
+	public function prepareContent ()
 	{
 		$strCsv = '';
-		$arrData = array();
+		$arrData = array ();
 
 		// add the header fields if there are some
-		if (count($this->arrHeaderFields)>0)
+		if (count ($this->arrHeaderFields)>0)
 		{
-			$arrData = array($this->arrHeaderFields);
+			$arrData = array ($this->arrHeaderFields);
 		}
 
 		// add all other elements
@@ -254,16 +255,18 @@ class CsvWriter
 
 
 		// build the csv string
-		foreach((array) $arrData as $arrRow)
+		foreach ((array) $arrData as $arrRow)
 		{
-			array_walk($arrRow, array($this, 'escapeRow'));
+			array_walk ($arrRow, array($this, 'escapeRow'));
 			$strCsv .= $this->strDelimiter . implode($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow) . $this->strDelimiter . $this->strLineEnd;
 		}
 
 		// add the excel support if requested
 		if ($this->blnExcel === true)
 		{
-			$strCsv = chr(255) . chr(254) . mb_convert_encoding($strCsv, 'UTF-16LE', 'UTF-8');
+			$strCsv = chr (255)
+				.chr (254)
+				.mb_convert_encoding ($strCsv, 'UTF-16LE', 'UTF-8');
 		}
 
 		return $strCsv;
@@ -276,8 +279,8 @@ class CsvWriter
 	 * @param mixed &$varValue
 	 * @return void
 	 */
-	public function escapeRow(&$varValue)
+	public function escapeRow (&$varValue)
 	{
-		$varValue = str_replace('"', '""', $varValue);
+		$varValue = str_replace ('"', '""', $varValue);
 	}
 }
