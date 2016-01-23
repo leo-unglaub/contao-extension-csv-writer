@@ -257,16 +257,19 @@ class CsvWriter
 		// build the csv string
 		foreach ((array) $arrData as $arrRow)
 		{
-			array_walk ($arrRow, array($this, 'escapeRow'));
-			$strCsv .= $this->strDelimiter . implode($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow) . $this->strDelimiter . $this->strLineEnd;
+			array_walk ($arrRow, array ($this, 'escapeRow'));
+			$strCsv .= $this->strDelimiter
+				. implode ($this->strDelimiter . $this->strSeperator . $this->strDelimiter, $arrRow)
+				. $this->strDelimiter
+				. $this->strLineEnd;
 		}
 
 		// add the excel support if requested
 		if ($this->blnExcel === true)
 		{
 			$strCsv = chr (255)
-				.chr (254)
-				.mb_convert_encoding ($strCsv, 'UTF-16LE', 'UTF-8');
+				. chr (254)
+				. mb_convert_encoding ($strCsv, 'UTF-16LE', 'UTF-8');
 		}
 
 		return $strCsv;
